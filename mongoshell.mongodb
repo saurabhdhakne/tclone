@@ -1,0 +1,10 @@
+use('twitter-clone');
+
+db.collection()
+
+db.user.insertOne(
+   { fname: "saurabh", lname: "dhakne", email:"example@email.com" }
+)
+
+db.user.find({})
+db.user.remove({})
