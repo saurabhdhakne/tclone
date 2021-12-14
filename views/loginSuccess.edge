@@ -1,0 +1,24 @@
+@layout('layout.app')
+
+@section('content')
+
+<div class="container pb-5">
+
+    <div class="row bg-white mt-5 pt-5 pb-5 p-3 shadowme">
+        <div class="col-md-12 text-primary text-justify text-center pt-4 pb-4">
+            <div class="display-1">Login Successful</div>
+            <br>
+            <h2 class="text-center">
+                wait for a moment! We are Redirecting you...
+            </h2>
+            <script>
+                    setTimeout(()=>{
+                        window.location = '/'
+                    },2000);
+            </script>
+            <h3><input type="button" value="Login" class="btn btn-outline-primary btn-lg" onclick="window.location='/google' "> </h3>
+            <br>
+        </div>
+    </div>
+</div>
+@endsection

@@ -18,9 +18,9 @@ module.exports = (req, res) => {
             console.log(result);
             if (err) throw err;
             if (result) {
-              res.send("Success");
+              res.redirect("/");
             } else {
-              res.render("failed");
+              res.send("failed");
             }
           }
         );

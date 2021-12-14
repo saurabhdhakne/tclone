@@ -6,5 +6,17 @@ db.user.insertOne(
    { fname: "saurabh", lname: "dhakne", email:"example@email.com" }
 )
 
-db.user.find({})
-db.user.remove({})
+db.users.find({})
+db.users.remove({})
+
+use('twitter-clone');
+
+show collections;
+
+db.users.find({});
+
+db.users.remove({})
+
+db.user.updateMany({},{$set: {"following":[]}},false,true);
+
+db.users.find({email: "timesofsrb@gmail.com"}).count() > 0

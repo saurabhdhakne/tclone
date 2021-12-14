@@ -10,7 +10,7 @@ module.exports = (req, res) => {
       console.log("Unable to connect");
     } else {
       console.log("connected");
-
+      console.log(req.body);
       var currentdate = new Date();
       var datetime =
         "Date : " +

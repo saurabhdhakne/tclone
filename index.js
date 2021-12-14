@@ -38,6 +38,7 @@ const indexRoute = require("./Controllers/index");
 const registerWithGoogle = require("./Controllers/registerWithGoogle");
 const notfound = require("./Controllers/notfound");
 const follow = require("./Controllers/follow");
+const tweetCreate = require("./Controllers/tweetCreate");
 
 var jsonParser = bodyParser.json();
 
@@ -83,18 +84,26 @@ app.set("views", `${__dirname}/views`);
 var data;
 
 const redirectLoginUser = (req, res, next) => {
-  if (!req.session.userType) {
-    res.redirect("/signInUser");
-  } else if (req.session.userType == "user") {
-    next();
+  if (req.session.email) {
+    res.redirect("/");
   } else {
-    res.redirect("/signInUser");
+    res.redirect("/login");
   }
 };
 
 app.get("/", indexRoute);
 
 app.get("/follow", follow);
+
+app.get("/login", (req, res) => {
+  res.render("login");
+});
+
+app.get("/loginSuccess", (req, res) => {
+  res.render("loginSuccess");
+});
+
+app.post("/post_tweet", urlencodedParser, tweetCreate);
 
 app.get("/logout", (req, res, next) => {
   req.session.destroy((err) => {
@@ -109,7 +118,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 const isLoggedIn = (req, res, next) => {
-  if (req) {
+  if (req.session.email) {
+    res.redirect("/");
+  } else if (req.user) {
     next();
   } else {
     res.send("Erro!! Try After some time...");

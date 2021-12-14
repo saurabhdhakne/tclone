@@ -7,11 +7,13 @@
   <div class="row">
 
     <div class="col-md-3 mt-5">
-
+      <h2>
+        Follwing
+      </h2>
       @each(dt in fUser)
         <div class="col-12 p-2">
           <div class="col-12 bg-light d-flex align-items-center pt-3 pb-3">
-
+            
               <span class="text-primary" onclick="window.location='/follow?id={{ dt._id }}' ">
                   <i class="fa fa-user" aria-hidden="true"></i>
               </span>
@@ -25,44 +27,72 @@
       @endeach
     </div>
 
+
     <div class="col-md-6 mt-5">
-      
       <p>
         <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-          Whats Happening ? Post Your Thoughts....
+          What's Happening ? Post Your Thoughts....
         </a>
       </p>
 
       <div class="collapse" id="collapseExample">
         <div class="card card-body p-0">
           
-          <form action="blogCreate" method="POST" enctype="multipart/form-data" class="col-12" >
+          <form action="post_tweet" method="POST" class="col-12" >
           
             <textarea name="content" id="editor1" rows="50" cols="50" >
               Write here What's going in your mind, You Can also add images!!!
             </textarea>
             
-            <div class="col-12 text-center">
-              <input type="submit" class="pl-3 pr-3" value="Submit">
+            <div class="col-12 text-center m-2">
+              <input type="submit" class="btn btn-primary col-md-3" value="Submit">
             </div>
             
           </form>
 
         </div>
       </div>
+      <div class="container" style="height:75vh;overflow-y:scroll;--webkit-scroll:width:2px">
+          @each(tweet in tweets)
+            <div class="col-12 p-2">
+              <div class="col-12 bg-light d-flex align-items-center pt-3 pb-3">
 
-      <script>
-        CKEDITOR.replace( 'editor1' );
-      </script>
+              {{{tweet.content}}} 
+
+              </div>
+            </div>
+          @endeach
+      </div>
+
       
     </div>
     
     <div class="col-md-3 mt-5">
-
+      <h2>
+        Follow
+      </h2>
       @each(dt in nfUser)
         <div class="col-12 p-2">
           <div class="col-12 bg-light d-flex align-items-center pt-3 pb-3">
 
               <span class="flex-grow-1 ">
                   {{dt.email}}
-            
+              </span>
+              <button class="btn btn-outline-primary ml-auto" onclick="window.location='/follow?id={{ dt._id }}' ">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+              </button>
+
+          </div>
+        </div>
+      @endeach
+
+    </div>
+  
+  </div>
+</div>
+
+<script>
+  CKEDITOR.replace( 'editor1' );
+</script>
+
+@endsection
